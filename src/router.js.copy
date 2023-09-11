@@ -1,0 +1,33 @@
+import Homepage from "./pages/user/homepage";
+import {Router, Route} from "react-router-dom";
+import { ROUTER } from "./utils/router";
+import MasterLayout from "./pages/user/theme/masterLayout";
+import Profilepage from "./pages/user/Profilepage";
+
+const renderUserRouter = () => {
+    const userRouters = [
+        {
+            path: ROUTER.USER.HOME,
+            component: <Homepage/>
+        },
+        {
+            path: ROUTER.USER.PROFILE,
+            component: <Profilepage/>
+        },
+    ]
+    return (
+        <MasterLayout>
+          <Router>
+            {
+                userRouters.map((item, key) => {
+                    <Route key = {key} path ={item.path} element ={item.component} />
+                })
+            }
+          </Router>
+        </MasterLayout>
+    )
+}
+const RouterCustom = () => {
+    return renderUserRouter();
+}
+export default RouterCustom;
